@@ -25,5 +25,5 @@ class TestFindCountries(unittest.TestCase):
         self.assertEqual("US", countries[0][0].alpha_2)
 
     def test_capital_us(self):
-        countries = find_countries("TALKING ABOUT US")
+        countries = find_countries("TALKING ABOUT US AND")
         self.assertEqual(0, len(countries))
