@@ -6,8 +6,13 @@ import pycountry
 extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U\.S", r"U\.S\."}, "CZ": {"Czech Rep", "Czech Republic"},
                   "AE": {"UAE", r"U\.A\.E\."},
                   "KR": {"Korea", "Republic of Korea"}, "KP": {"North Korea", "Democratic People's Republic of Korea"},
-                  "CI": {"Ivory Coast"}, "CD":{"Congo, Democratic Republic", "Democratic Republic of the Congo", "Democratic Republic of Congo", "DR Congo", "DRC"},
-                  "CV":{"Cape Verde"}, "SH":{r"St\.? Helena"}, "GB": {"Britain", "United Kingdom", "UK", r"U\.K", r"U\.K\."}}
+                  "CI": {"Ivory Coast"}, "CD": {"Congo, Democratic Republic", "Democratic Republic of the Congo",
+                                                "Democratic Republic of Congo", "DR Congo", "DRC"},
+                  "CV": {"Cape Verde"}, "SH": {r"St\.? Helena"},
+                  "GB": {"Britain", "United Kingdom", "UK", r"U\.K", r"U\.K\."},
+                  "RU": {"Russia"}, "VA": {"Holy See"}, "BN": {"Brunei"}, "LA": {"Laos"},
+                  "VG": {"British Virgin Islands"}, "SY": {"Syria"}
+                  }
 countries_maps = {}
 
 
@@ -48,7 +53,7 @@ countries_regexes = []
 case_insensitive_regexes = []
 countries_master_map = {}
 for num_words, countries_map in sorted(countries_maps.items(), key=operator.itemgetter(0), reverse=True):
-    countries_pattern = r"\b(" + "|".join(countries_map) + r")\b"
+    countries_pattern = r"\b(" + "|".join(set(countries_map).difference({"US"})) + r")\b"
     case_insensitive_regex = re.compile("(?i)" + countries_pattern)
     case_insensitive_regexes.append(case_insensitive_regex)
     if num_words > 1:
@@ -81,7 +86,7 @@ def find_countries(text: str, is_ignore_case: bool = False) -> str:
             if len(set(range(match.start(), match.end())).intersection(is_excluded)) > 0:
                 continue
 
-            normalised_name = re.sub(r" |-|'|\\|\.|,|\(|\)", "", match.group().upper())
+            normalised_name = pycountry.remove_accents(re.sub(r" |-|'|\\|\.|,|\(|\)", "", match.group().upper()))
             matched_country = countries_master_map[normalised_name]
 
             country_matches.append((matched_country, match))
@@ -89,4 +94,4 @@ def find_countries(text: str, is_ignore_case: bool = False) -> str:
             for i in range(match.start(), match.end()):
                 is_excluded.add(i)
 
-    return sorted(country_matches, key=lambda match : match[1].start())
+    return sorted(country_matches, key=lambda match: match[1].start())

@@ -50,15 +50,6 @@ class TestFindCountries(unittest.TestCase):
         countries = find_countries("I have a Guinea pig.")
         self.assertEqual(0, len(countries))
 
-    def test_ambiguity_8(self):
-        countries = find_countries("I went to the us")
-        self.assertEqual(0, len(countries))
-
-    def test_ambiguity_case_insensitive(self):
-        countries = find_countries("I went to the us", True)
-        self.assertEqual(1, len(countries))
-        self.assertEqual("US", countries[0][0].alpha_2)
-
     def test_english_name(self):
         countries = find_countries("I went to the ivory coast")
         self.assertEqual(1, len(countries))
@@ -68,13 +59,3 @@ class TestFindCountries(unittest.TestCase):
         countries = find_countries("I went to cote divoire")
         self.assertEqual(1, len(countries))
         self.assertEqual("CI", countries[0][0].alpha_2)
-
-    def test_name_with_dots(self):
-        countries = find_countries("I went to the U.S.A.")
-        self.assertEqual(1, len(countries))
-        self.assertEqual("US", countries[0][0].alpha_2)
-
-    def test_name_without_dots(self):
-        countries = find_countries("born in the USA")
-        self.assertEqual(1, len(countries))
-        self.assertEqual("US", countries[0][0].alpha_2)
