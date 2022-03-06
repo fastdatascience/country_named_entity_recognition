@@ -15,7 +15,7 @@ setup(
   url = 'https://fastdatascience.com',   
   keywords = ['country'],
   install_requires=[
-          
+          'pycountry==22.1.10'
       ],
   classifiers=[
     'Development Status :: 3 - Alpha',   

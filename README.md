@@ -14,6 +14,8 @@ It also only finds the English names of these countries. Names in the local lang
 
 Python 3.6 and above
 
+pycountry 22.1.10
+
 # Installation
 
 ```

@@ -16,6 +16,8 @@ Requirements
 
 Python 3.6 and above
 
+pycountry 22.1.10
+
 Installation
 ============
 
