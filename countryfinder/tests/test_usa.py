@@ -3,7 +3,7 @@ import unittest
 from countryfinder.country_finder import find_countries
 
 
-class TestFindCountries(unittest.TestCase):
+class TestSynonymsForUSA(unittest.TestCase):
 
     def test_all_lower(self):
         countries = find_countries("I went to the us")
@@ -27,3 +27,4 @@ class TestFindCountries(unittest.TestCase):
     def test_capital_us(self):
         countries = find_countries("TALKING ABOUT US AND")
         self.assertEqual(0, len(countries))
+

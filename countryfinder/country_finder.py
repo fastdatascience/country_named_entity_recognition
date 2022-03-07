@@ -42,6 +42,7 @@ for country in pycountry.countries:
     add_variant(country.name, country)
     clean_name = re.sub(r'( \(|,).+$', '', country.name)
     add_variant(clean_name, country)
+    add_variant(re.sub(r"(?i)\band\b", "&", clean_name), country)
 
 for alpha_2, variants in extra_synonyms.items():
     country = pycountry.countries.lookup(alpha_2)
