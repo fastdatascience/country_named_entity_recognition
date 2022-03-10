@@ -3,15 +3,15 @@ import re
 
 import pycountry
 
-extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U\.S", r"U\.S\."}, "CZ": {"Czech Rep", "Czech Republic"},
-                  "AE": {"UAE", r"U\.A\.E\."},
+extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U.S", r"U.S."}, "CZ": {"Czech Rep", "Czech Republic"},
+                  "AE": {"UAE", r"U.A.E."},
                   "KR": {"Korea", "Republic of Korea"}, "KP": {"North Korea", "Democratic People's Republic of Korea"},
                   "CI": {"Ivory Coast"}, "CD": {"Congo, Democratic Republic", "Democratic Republic of the Congo",
                                                 "Democratic Republic of Congo", "DR Congo", "DRC"},
-                  "CV": {"Cape Verde"}, "SH": {r"St\.? Helena"},
-                  "GB": {"Britain", "United Kingdom", "UK", r"U\.K", r"U\.K\."},
+                  "CV": {"Cape Verde"}, "SH": {"St. Helena", "St Helena"},
+                  "GB": {"Britain", "United Kingdom", "UK", r"U.K", r"U.K."},
                   "RU": {"Russia"}, "VA": {"Holy See"}, "BN": {"Brunei"}, "LA": {"Laos"},
-                  "VG": {"British Virgin Islands"}, "SY": {"Syria"}
+                  "VG": {"British Virgin Islands"}, "SY": {"Syria"}, "GE": {"Republic of Georgia"}
                   }
 countries_maps = {}
 
@@ -28,6 +28,7 @@ def add_variant(name, country):
     name = re.sub("'", "'?", name)
     name = re.sub(r"\(", "\\(", name)
     name = re.sub(r"\)", "\\)", name)
+    name = re.sub(r"\.", "\\.", name)
     variants = {name, pycountry.remove_accents(name), pycountry.remove_accents(no_spaces)}
     for v in variants:
         if num_words == 1:
@@ -67,9 +68,71 @@ countries_exclusions = {"guinea[- ]*pig|canada[ -]*g(?:oo|ee)se"}
 country_exclusion_pattern = r"(?i)(" + "|".join(countries_exclusions) + r")"
 country_exclusion_regex = re.compile(country_exclusion_pattern)
 
+# A set of key words which indicate Georgia the country if they occur within 3 tokens of a mention of Georgia
+georgia_terms = {"caucasus", "sakartvelo", "kartvelian", "ossetia", "black sea", "caspian", r"idze\b", r"adze\b",
+                 r"shvili\b",
+                 'ს', 'ა', 'ქ', 'ა', 'რ', 'თ', 'ვ', 'ე', 'ლ', 'ო',
+                 r"\bBatumi\b",
+                 r"\bKutaisi\b",
+                 r"\bRustavi\b",
+                 r"\bZugdidi\b",
+                 r"\bKobuleti\b",
+                 r"\bKhashuri\b",
+                 r"\bSamtredia\b",
+                 r"\bSenaki\b",
+                 r"\bZestafoni\b",
+                 r"\bMarneuli\b",
+                 r"\bTelavi\b",
+                 r"\bAkhaltsikhe\b",
+                 r"\bOzurgeti\b",
+                 r"\bKaspi\b",
+                 r"\bChiatura\b",
+                 r"\bTsqaltubo\b",
+                 r"\bSagarejo\b",
+                 r"\bGardabani\b",
+                 r"\bBorjomi\b",
+                 r"\bTkibuli\b",
+                 r"\bKhoni\b",
+                 r"\bBolnisi\b",
+                 r"\bAkhalkalaki\b",
+                 r"\bGurjaani\b",
+                 r"\bMtskheta\b",
+                 r"\bKvareli\b",
+                 r"\bAkhmeta\b",
+                 r"\bKareli\b",
+                 r"\bLanchkhuti\b",
+                 r"\bTsalenjikha\b",
+                 r"\bDusheti\b",
+                 r"\bSachkhere\b",
+                 r"\bDedoplistsqaro\b",
+                 r"\bLagodekhi\b",
+                 r"\bNinotsminda\b",
+                 r"\bAbasha\b",
+                 r"\bTsnori\b",
+                 r"\bTerjola\b",
+                 r"\bMartvili\b",
+                 r"\bJvari\b",
+                 r"\bKhobi\b",
+                 r"\bBaghdati\b",
+                 r"\bTetritsqaro\b",
+                 r"\bTsalka\b",
+                 r"\bDmanisi\b",
+                 r"\bOni\b",
+                 r"\bAmbrolauri\b",
+                 r"\bSighnaghi\b",
+                 r"\bTsageri\b", }
+for subd in pycountry.subdivisions:
+    if subd.country_code == "GE":
+        for word in re.split(r" |-", subd.name):
+            georgia_terms.add(word)
 
-def find_countries(text: str, is_ignore_case: bool = False) -> str:
-    country_matches = []
+georgia_pattern = r'(' + "|".join(georgia_terms) + r")"
+georgia_regex_left = re.compile(f"(?i)({georgia_pattern}(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?\\W*$)")
+georgia_regex_right = re.compile(f"(?i)(^\\W*(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?{georgia_pattern})")
+
+
+def find_countries(text: str, is_ignore_case: bool = False, is_us_context: bool = False) -> str:
+    country_matches_candidates = []
 
     exclusion_matches = list(country_exclusion_regex.finditer(text))
     is_excluded = set()
@@ -88,11 +151,36 @@ def find_countries(text: str, is_ignore_case: bool = False) -> str:
                 continue
 
             normalised_name = pycountry.remove_accents(re.sub(r" |-|'|\\|\.|,|\(|\)", "", match.group().upper()))
+
             matched_country = countries_master_map[normalised_name]
 
-            country_matches.append((matched_country, match))
+            is_high_confidence = True
+            if not is_us_context and normalised_name == "GEORGIA":
+                is_high_confidence = False
+
+            country_matches_candidates.append((matched_country, match, is_high_confidence))
 
             for i in range(match.start(), match.end()):
                 is_excluded.add(i)
 
-    return sorted(country_matches, key=lambda match: match[1].start())
+    countries_found_set = set([c[0].alpha_2 for c in country_matches_candidates])
+
+    sorted_candidate_matches = sorted(country_matches_candidates, key=lambda match: match[1].start())
+
+    country_matches = []
+    for matched_country, match, is_high_confidence in sorted_candidate_matches:
+        is_include = True
+        if matched_country.alpha_2 == "GE" and not is_high_confidence:
+            is_include = False
+            if len({"UA", "RO", "RU", "BY", "UZ", "KZ", "AR", "AZ", "TR"}.intersection(countries_found_set)) > 0:
+                is_include = True
+            else:
+                left_context = text[:match.start()].strip()
+                right_context = text[match.end():].strip()
+                if georgia_regex_left.findall(left_context) or georgia_regex_right.findall(right_context):
+                    is_include = True
+
+        if is_include:
+            country_matches.append((matched_country, match))
+
+    return country_matches
