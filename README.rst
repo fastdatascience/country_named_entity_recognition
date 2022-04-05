@@ -1,4 +1,4 @@
-Country finder
+Country named entity recognition
 ==============
 
 Developed by Fast Data Science, https://fastdatascience.com
