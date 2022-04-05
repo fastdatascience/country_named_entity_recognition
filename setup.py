@@ -4,16 +4,16 @@ with open("README.rst", "r") as fh:
   long_description = fh.read()
 
 setup(
-  name = 'countryfinder',
-  packages = ['countryfinder'],
+  name = 'country-named-entity-recognition',
+  packages = ['country-named-entity-recognition'],
   version = '0.1',
   license='MIT', 
-  description = 'Translates input between UK and US spelling',
+  description = 'Finds countries in a string',
   long_description=long_description,
   author = 'Thomas Wood',
   #author_email = 'thomas@fastdatascience.com',
   url = 'https://fastdatascience.com',   
-  keywords = ['country'],
+  keywords = ['country', 'ner', 'nlp', 'named entity recognition', 'natural language processing'],
   install_requires=[
           'pycountry==22.1.10'
       ],
