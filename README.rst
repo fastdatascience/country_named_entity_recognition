@@ -3,7 +3,7 @@ Country finder
 
 Developed by Fast Data Science, https://fastdatascience.com
 
-Source code at https://github.com/fastdatascience/countryfinder
+Source code at https://github.com/fastdatascience/country_named_entity_recognition
 
 Python library for finding country names in a string.
 
@@ -23,7 +23,7 @@ Installation
 
 ::
 
-  pip install countryfinder
+  pip install country-named-entity-recognition
 
 Usage examples
 ==============
@@ -32,7 +32,7 @@ Example 1
 
 .. code:: python
 
-  from countryfinder import find_countries
+  from country_named_entity_recognition import find_countries
   find_countries("We are expanding in the UK")
 
 outputs a list of tuples.
