@@ -14,7 +14,7 @@ It also only finds the English names of these countries. Names in the local lang
 Requirements
 ============
 
-Python 3.6 and above
+Python 3.9 and above
 
 pycountry 22.1.10
 

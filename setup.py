@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setup(
   name = 'country-named-entity-recognition',
-  packages = ['country-named-entity-recognition'],
+  packages = ['country_named_entity_recognition'],
   version = '0.1',
   license='MIT', 
   description = 'Finds countries in a string',
