@@ -14,12 +14,13 @@ extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U.S", r"U.S."}, "
                   "RU": {"Russia"}, "VA": {"Holy See"}, "BN": {"Brunei"}, "LA": {"Laos"},
                   "VG": {"British Virgin Islands"}, "SY": {"Syria"}, "GE": {"Republic of Georgia"},
                   'GM': {'gambia, republic of', 'gambia republic', 'republic of gambia', 'republic of the gambia'},
-                  "NL": {"Nerlands"}, "IR": {"Iran"}
+                  "NL": {"Nerlands"}, "IR": {"Iran"}, "AE": {"UAE", "U.A.E."}
                   }
 countries_maps = {}
 
 
-def add_variant(name, country):
+def _add_variant(name: str, country):
+    global countries_maps
     num_words = len(re.split(r" |-", name))
     if name == "the US":
         num_words = 1  # low prio
@@ -42,30 +43,52 @@ def add_variant(name, country):
             countries_map[v.upper()] = country
 
 
-for country in pycountry.countries:
-    add_variant(country.name, country)
-    clean_name = re.sub(r'( \(|,).+$', '', country.name)
-    add_variant(clean_name, country)
-    add_variant(re.sub(r"(?i)\band\b", "&", clean_name), country)
-
-for alpha_2, variants in extra_synonyms.items():
+def _add_variants(variants: list, alpha_2: str):
     country = pycountry.countries.lookup(alpha_2)
     for variant in variants:
-        add_variant(variant, country)
+        _add_variant(variant, country)
 
-# Create a set of regexes to be executed in order, from high to low accuracy.
-countries_regexes = []
-case_insensitive_regexes = []
-countries_master_map = {}
-for num_words, countries_map in sorted(countries_maps.items(), key=operator.itemgetter(0), reverse=True):
-    countries_pattern = r"\b(" + "|".join(set(countries_map).difference({"US"})) + r")\b"
-    case_insensitive_regex = re.compile("(?i)" + countries_pattern)
-    case_insensitive_regexes.append(case_insensitive_regex)
-    if num_words > 1:
-        countries_pattern = "(?i)" + countries_pattern
-    countries_regex = re.compile(countries_pattern)
-    countries_regexes.append(countries_regex)
-    countries_master_map.update(countries_map)
+
+for country in pycountry.countries:
+    _add_variant(country.name, country)
+    clean_name = re.sub(r'( \(|,).+$', '', country.name)
+    _add_variant(clean_name, country)
+    _add_variant(re.sub(r"(?i)\band\b", "&", clean_name), country)
+
+for alpha_2, variants in extra_synonyms.items():
+    _add_variants(variants, alpha_2)
+
+
+def _compile_regexes():
+    # Create a set of regexes to be executed in order, from high to low accuracy.
+    countries_regexes = []
+    case_insensitive_regexes = []
+    countries_master_map = {}
+    for num_words, countries_map in sorted(countries_maps.items(), key=operator.itemgetter(0), reverse=True):
+        countries_pattern = r"\b(" + "|".join(set(countries_map).difference({"US"})) + r")\b"
+        case_insensitive_regex = re.compile("(?i)" + countries_pattern)
+        case_insensitive_regexes.append(case_insensitive_regex)
+        if num_words > 1:
+            countries_pattern = "(?i)" + countries_pattern
+        countries_regex = re.compile(countries_pattern)
+        countries_regexes.append(countries_regex)
+        countries_master_map.update(countries_map)
+    return countries_regexes, case_insensitive_regexes, countries_master_map
+
+
+countries_regexes, case_insensitive_regexes, countries_master_map = _compile_regexes()
+
+
+def add_custom_variants(variants: list, alpha_2: str):
+    """
+    Add a set of custom variant names for a country.
+    :param variants: A list of strings e.g. ["Neverneverland", "Wonderland", "Disneyland"]
+    :param alpha_2: the 2-letter country code in upper case e.g. "AE"
+    """
+    _add_variants(variants, alpha_2)
+    global countries_regexes, case_insensitive_regexes, countries_master_map
+    countries_regexes, case_insensitive_regexes, countries_master_map = _compile_regexes()
+
 
 countries_exclusions = {"guinea[- ]*pig|canada[ -]*g(?:oo|ee)se"}
 country_exclusion_pattern = r"(?i)(" + "|".join(countries_exclusions) + r")"
@@ -75,7 +98,7 @@ country_exclusion_regex = re.compile(country_exclusion_pattern)
 georgia_terms = {"country", "caucasus", "sakartvelo", "kartvelian", "ossetia", "black sea", "caspian", r"idze\b",
                  r"\btiflis\b",
                  r"adze\b",
-                 r"shvili\b",
+                 r"vili\b",
                  'ს', 'ა', 'ქ', 'რ', 'თ', 'ვ', 'ე', 'ლ', 'ო',
                  r"\bBatumi\b",
                  r"\bKutaisi\b",
@@ -131,11 +154,20 @@ for subd in pycountry.subdivisions:
             georgia_terms.add(word)
 
 georgia_pattern = r'(' + "|".join(georgia_terms) + r")"
-georgia_regex_left = re.compile(f"(?i)({georgia_pattern}(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?\\W*$)")
-georgia_regex_right = re.compile(f"(?i)(^\\W*(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?{georgia_pattern})")
+georgia_regex_left = re.compile(
+    f"(?i)({georgia_pattern}(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?\\W*$)")
+georgia_regex_right = re.compile(
+    f"(?i)(^\\W*(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?(\\w*\\W*)?{georgia_pattern})")
 
 
-def find_countries(text: str, is_ignore_case: bool = False, is_georgia_probably_the_country: bool = False) -> str:
+def find_countries(text: str, is_ignore_case: bool = False, is_georgia_probably_the_country: bool = False) -> list:
+    """
+    Find all countries mentioned in the text.
+    :param text: A string of text in English.
+    :param is_ignore_case: Should case be ignored? By default the tool doesn't ignore case.
+    :param is_georgia_probably_the_country: This option defaults to False. If we encounter the string "Georgia", is this probably the country in Eastern Europe? Most occurrences of Georgia in English text refer to the US state, so if your document is in a US-centric context it's best to leave this option set to False.
+    :return: A list of tuples. Each tuple consists of a Pycountry country object, and a regex Match object.
+    """
     country_matches_candidates = []
 
     exclusion_matches = list(country_exclusion_regex.finditer(text))
@@ -188,4 +220,3 @@ def find_countries(text: str, is_ignore_case: bool = False, is_georgia_probably_
             country_matches.append((matched_country, match))
 
     return country_matches
-

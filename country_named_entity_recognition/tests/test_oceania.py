@@ -1,6 +1,6 @@
 import unittest
 
-from countryfinder.country_finder import find_countries
+from country_finder import find_countries
 
 oceanian_alpha_2_codes ={'AS',
  'AU',

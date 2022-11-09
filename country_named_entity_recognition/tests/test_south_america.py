@@ -1,6 +1,6 @@
 import unittest
 
-from countryfinder.country_finder import find_countries
+from country_finder import find_countries
 
 south_american_alpha_2_codes = {'AR',
                                 'BO',
