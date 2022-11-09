@@ -6,13 +6,13 @@ with open("README.rst", "r") as fh:
 setup(
   name = 'country-named-entity-recognition',
   packages = ['country_named_entity_recognition'],
-  version = '0.1',
+  version = '0.4',
   license='MIT', 
   description = 'Finds countries in a string',
   long_description=long_description,
   author = 'Thomas Wood',
   #author_email = 'thomas@fastdatascience.com',
-  url = 'https://fastdatascience.com',   
+  url = 'https://fastdatascience.com/country-named-entity-recognition/',
   keywords = ['country', 'ner', 'nlp', 'named entity recognition', 'natural language processing'],
   install_requires=[
           'pycountry==22.1.10'
@@ -27,6 +27,9 @@ setup(
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
   ],
   include_package_data=True,
 )
