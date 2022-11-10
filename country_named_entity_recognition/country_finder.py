@@ -12,9 +12,19 @@ extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U.S", r"U.S."}, "
                   "CV": {"Cape Verde"}, "SH": {"St. Helena", "St Helena"},
                   "GB": {"Britain", "United Kingdom", "UK", r"U.K", r"U.K."},
                   "RU": {"Russia"}, "VA": {"Holy See"}, "BN": {"Brunei"}, "LA": {"Laos"},
-                  "VG": {"British Virgin Islands"}, "SY": {"Syria"}, "GE": {"Republic of Georgia"},
+                  "VG": {"British Virgin Islands", "Virgin Islands (British)", "Virgin Islands, British"},
+                  "VI": {"Virgin Islands (US)", "Virgin Islands (U.S.)", "Virgin Islands, US", "Virgin Islands, U.S."},
+                  "SY": {"Syria"}, "GE": {"Republic of Georgia"},
                   'GM': {'gambia, republic of', 'gambia republic', 'republic of gambia', 'republic of the gambia'},
-                  "NL": {"Nerlands"}, "IR": {"Iran"}, "AE": {"UAE", "U.A.E."}
+                  "NL": {"Nerlands"}, "IR": {"Iran"}, "AE": {"UAE", "U.A.E."},
+                  "MK": {"Macedonia, The Former Yugoslav Republic of", "Macedonia, Former", "FYROM"},
+                  "RS": {"Kosovo", "Former Yugoslavia", "Former Serbia and Montenegro"},
+                  # Kosovo currently mapped to Serbia for technical reasons because Kosovo is not currently its own 2 letter code in Debian or Pycountry (the dependencies of this library)
+                  "SZ": {"Swaziland", "eswatini", "eSwatini"},
+                  "LY": {"Libyan Arab Jamahiriya"},
+                  "PS": {"Palestinian Territories, Occupied", "Palestinian Territory, occupied", "Palestine, Occupied",
+                         "Occupied Palestine"},
+                  "CN": {"Macau"}
                   }
 countries_maps = {}
 
@@ -65,7 +75,9 @@ def _compile_regexes():
     case_insensitive_regexes = []
     countries_master_map = {}
     for num_words, countries_map in sorted(countries_maps.items(), key=operator.itemgetter(0), reverse=True):
-        countries_pattern = r"\b(" + "|".join(set(countries_map).difference({"US"})) + r")\b"
+        countries_pattern = r"\b(" + "|".join(set(countries_map).difference({"US"})) + r")"
+        if num_words <= 2:
+            countries_pattern += r"\b"
         case_insensitive_regex = re.compile("(?i)" + countries_pattern)
         case_insensitive_regexes.append(case_insensitive_regex)
         if num_words > 1:
