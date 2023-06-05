@@ -107,3 +107,21 @@ If you find a problem, you are welcome either to raise an issue at https://githu
 # Who to contact
 
 Thomas Wood at https://fastdatascience.com
+
+# How to cite Country Named Entity Recognition?
+
+We would be grateful for your taking the consideration to cite us. We would suggest something like the following (depending on your style):
+
+Wood, T.A., Country Named Entity Recognition [Computer software], Version 0.4, accessed at https://pypi.org/project/country-named-entity-recognition, Fast Data Science Ltd (2022)
+
+A BibTeX entry for LaTeX users is
+
+```
+@unpublished{countrynamedentityrecognition,
+    AUTHOR = {Wood, T.A.},
+    TITLE  = {Country Named Entity Recognition (Computer software), Version 0.4},
+    YEAR   = {2023},
+    Note   = {To appear},
+    url = {https://pypi.org/project/country-named-entity-recognition}
+}
+```
