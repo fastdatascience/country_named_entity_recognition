@@ -4,6 +4,8 @@ Developed by Fast Data Science, https://fastdatascience.com
 
 Source code at https://github.com/fastdatascience/country_named_entity_recognition
 
+PyPI package: https://pypi.org/project/country-named-entity-recognition/
+
 Python library for finding country names in a string.
 
 Please note this library finds only high confidence countries. A text such as "America" is ambiguous.
