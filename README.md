@@ -112,7 +112,7 @@ Thomas Wood at https://fastdatascience.com
 
 We would be grateful for your taking the consideration to cite us. We would suggest something like the following (depending on your style):
 
-Wood, T.A., Country Named Entity Recognition [Computer software], Version 0.4, accessed at https://pypi.org/project/country-named-entity-recognition, Fast Data Science Ltd (2022)
+Wood, T.A., Country Named Entity Recognition [Computer software], Version 0.4, accessed at https://fastdatascience.com/country-named-entity-recognition/, Fast Data Science Ltd (2022)
 
 A BibTeX entry for LaTeX users is
 
@@ -122,6 +122,7 @@ A BibTeX entry for LaTeX users is
     TITLE  = {Country Named Entity Recognition (Computer software), Version 0.4},
     YEAR   = {2023},
     Note   = {To appear},
-    url = {https://pypi.org/project/country-named-entity-recognition}
+    url = {https://fastdatascience.com/country-named-entity-recognition/}
 }
+
 ```
