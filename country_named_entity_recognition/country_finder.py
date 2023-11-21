@@ -46,7 +46,7 @@ extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U.S", r"U.S."}, "
                   "SY": {"Syria"}, "GE": {"Republic of Georgia"},
                   'GM': {'gambia, republic of', 'gambia republic', 'republic of gambia', 'republic of the gambia'},
                   "NL": {"Nerlands"}, "IR": {"Iran"}, "AE": {"UAE", "U.A.E."},
-                  "MK": {"Macedonia, The Former Yugoslav Republic of", "Macedonia, Former", "FYROM"},
+                  "MK": {"Macedonia, The Former Yugoslav Republic of", "Macedonia, Former", "FYROM", "Macedonia, Yugoslav Republic of"},
                   "RS": {"Kosovo", "Former Yugoslavia", "Former Serbia and Montenegro"},
                   # Kosovo currently mapped to Serbia for technical reasons because Kosovo is not currently its own 2 letter code in Debian or Pycountry (the dependencies of this library)
                   "SZ": {"Swaziland", "eswatini", "eSwatini"},
