@@ -44,7 +44,7 @@ setup(
   url = 'https://fastdatascience.com/country-named-entity-recognition/',
   keywords = ['country', 'ner', 'nlp', 'named entity recognition', 'natural language processing'],
   install_requires=[
-          'pycountry==22.1.10'
+          'pycountry>=22.1.10'
       ],
   classifiers=[
     'Development Status :: 3 - Alpha',   
