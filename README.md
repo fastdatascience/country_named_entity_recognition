@@ -140,3 +140,7 @@ A BibTeX entry for LaTeX users is
 }
 
 ```
+
+## Case studies of the Country Named Entity Recognition Library
+
+Alisa Redding at the University of Helsinki used the tool for her Masters thesis on mass species extinction and biodiversity. Redding, Alisa, [Animals of the Digital Age : Assessing digital media for public interest and engagement in species threatened by wildlife trade.](https://helda.helsinki.fi/items/77960829-145a-4efb-b364-3dbe6ac6bfb4/full), University of Helsinki, Faculty of Science, 2023.
