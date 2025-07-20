@@ -46,17 +46,19 @@ extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U.S", r"U.S."}, "
                   "SY": {"Syria"}, "GE": {"Republic of Georgia"},
                   'GM': {'gambia, republic of', 'gambia republic', 'republic of gambia', 'republic of the gambia'},
                   "NL": {"Nerlands"}, "IR": {"Iran"}, "AE": {"UAE", "U.A.E."},
-                  "MK": {"Macedonia, The Former Yugoslav Republic of", "Macedonia, Former", "FYROM", "Macedonia, Yugoslav Republic of"},
+                  "MK": {"Macedonia, The Former Yugoslav Republic of", "Macedonia, Former", "FYROM"},
                   "RS": {"Kosovo", "Former Yugoslavia", "Former Serbia and Montenegro"},
                   # Kosovo currently mapped to Serbia for technical reasons because Kosovo is not currently its own 2 letter code in Debian or Pycountry (the dependencies of this library)
                   "SZ": {"Swaziland", "eswatini", "eSwatini"},
                   "LY": {"Libyan Arab Jamahiriya"},
                   "PS": {"Palestinian Territories, Occupied", "Palestinian Territory, occupied", "Palestine, Occupied",
                          "Occupied Palestine"},
-                  "CN": {"Macau"}
+                  "CN": {"Macau"},
+                  "LC": {"St Lucia", "St. Lucia"},
+                  "KN": {"St Kitts and Nevis", "St. Kitts and Nevis"},
+                  "VC": {"St Vincent and the Grenadines", "St. Vincent and the Grenadines"}
                   }
 countries_maps = {}
-
 
 def _add_variant(name: str, country):
     global countries_maps
@@ -261,3 +263,5 @@ def find_countries(text: str, is_ignore_case: bool = False, is_georgia_probably_
             country_matches.append((matched_country, match))
 
     return country_matches
+
+
