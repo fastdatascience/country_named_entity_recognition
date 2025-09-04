@@ -28,7 +28,7 @@ It also only finds the English names of these countries. Names in the local lang
 
 Python 3.9 and above
 
-pycountry 22.1.10
+pycountry 22.1.10 and above
 
 # Installation
 

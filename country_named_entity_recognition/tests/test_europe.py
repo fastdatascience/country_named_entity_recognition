@@ -1,4 +1,4 @@
-'''
+"""
 MIT License
 
 Copyright (c) 2023 Fast Data Science Ltd (https://fastdatascience.com)
@@ -25,11 +25,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-'''
+"""
 
 import unittest
 
-from country_finder import find_countries
+from country_named_entity_recognition.country_finder import find_countries
 
 european_alpha_2_codes = {'AD',
                           'AL',
