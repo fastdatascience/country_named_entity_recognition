@@ -1,18 +1,17 @@
-[tool.poetry]
+[project]
 name = "country-named-entity-recognition"
 version = "0.4"
 description = "Finds countries in a string"
 readme = "README.md"
 license = "MIT"
-authors = ["Thomas Wood"]
-maintainers = ["Thomas Wood"]
-homepage = "https://fastdatascience.com/country-named-entity-recognition/"
+authors = [{ name = "Thomas Wood" }]
+maintainers = [{ name = "Thomas Wood" }]
 keywords = ["country", "ner", "nlp", "named entity recognition", "natural language processing"]
+urls = { Homepage = "https://fastdatascience.com/country-named-entity-recognition/"}
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Build Tools",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.10",
@@ -21,14 +20,16 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.13",
 ]
+requires-python = ">=3.9,<4.0"
+dependencies = [
+    "pycountry>=22.1.0"
+]
 
-[tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-pycountry = ">=22.1.0"
-
-[tool.poetry.group.test.dependencies]
-pytest = "8.3.5"
+[project.optional-dependencies]
+test = [
+    "pytest>=8.3.5",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61.2.0", "wheel"]
+build-backend = "setuptools.build_meta"
