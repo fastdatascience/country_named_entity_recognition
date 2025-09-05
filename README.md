@@ -12,6 +12,16 @@
 
 # Country named entity recognition
 
+
+<!-- badges: start -->
+![my badge](https://badgen.net/badge/Status/In%20Development/orange)
+[![PyPI package](https://img.shields.io/badge/pip%20install-country_named_entity_recognition-brightgreen)](https://pypi.org/project/country-named-entity-recognition/) [![version number](https://img.shields.io/pypi/v/country-named-entity-recognition?color=green&label=version)](https://github.com/fastdatascience/country_named_entity_recognition/releases) [![License](https://img.shields.io/github/license/fastdatascience/country_named_entity_recognition)](https://github.com/fastdatascience/country_named_entity_recognition/blob/main/LICENSE)
+[![pypi Version](https://img.shields.io/pypi/v/country_named_entity_recognition.svg?style=flat-square&logo=pypi&logoColor=white)](https://pypi.org/project/country_named_entity_recognition/)
+ [![version number](https://img.shields.io/pypi/v/country_named_entity_recognition?color=green&label=version)](https://github.com/fastdatascience/country_named_entity_recognition/releases) [![PyPi downloads](https://static.pepy.tech/personalized-badge/country_named_entity_recognition?period=total&units=international_system&left_color=grey&right_color=orange&left_text=pip%20downloads)](https://pypi.org/project/country_named_entity_recognition/)
+[![forks](https://img.shields.io/github/forks/fastdatascience/country_named_entity_recognition)](https://github.com/fastdatascience/country_named_entity_recognition/forks)
+
+<!-- badges: end -->
+
 Developed by Fast Data Science, https://fastdatascience.com
 
 Source code at https://github.com/fastdatascience/country_named_entity_recognition
