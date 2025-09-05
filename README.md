@@ -126,7 +126,7 @@ Thomas Wood at https://fastdatascience.com
 
 We would be grateful for your taking the consideration to cite us. We would suggest something like the following (depending on your style):
 
-Wood, T.A., Country Named Entity Recognition [Computer software], Version 1.0.0, accessed at https://fastdatascience.com/natural-language-processing/country-named-entity-recognition/, Fast Data Science Ltd (2022)
+Wood, T.A. Country Named Entity Recognition. Zenodo, 5 Sept. 2025, https://doi.org/10.5281/zenodo.17062716.
 
 A BibTeX entry for LaTeX users is
 
@@ -134,11 +134,10 @@ A BibTeX entry for LaTeX users is
 @unpublished{countrynamedentityrecognition,
     AUTHOR = {Wood, T.A.},
     TITLE  = {Country Named Entity Recognition (Computer software), Version 1.0.0},
-    YEAR   = {2023},
-    Note   = {To appear},
+    YEAR   = {2025},
+    doi    = {10.5281/zenodo.17062716},
     url = {https://fastdatascience.com/natural-language-processing/country-named-entity-recognition/}
 }
-
 ```
 
 ## Case studies of the Country Named Entity Recognition Library
