@@ -2,7 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: Drug named entity recognition
+title: Country named entity recognition
 message: 'If you use this software, please cite it as below.'
 type: software
 authors:
@@ -12,7 +12,7 @@ authors:
 repository-code: 'https://github.com/fastdatascience/country_named_entity_recognition/'
 url: 'https://fastdatascience.com/natural-language-processing/country-named-entity-recognition/'
 license: MIT
-version: CITATION.cff
-date-released: '2024-10-04'
-url: 'https://zenodo.org/doi/10.5281/zenodo.10970631'
-doi: 10.5281/zenodo.10970631
+version: 1.0.0
+date-released: '2025-09-05'
+url: 'https://zenodo.org/doi/10.5281/zenodo.17062716'
+doi: 10.5281/zenodo.17062716
