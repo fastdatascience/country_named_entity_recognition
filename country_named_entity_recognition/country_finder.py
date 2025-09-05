@@ -1,4 +1,4 @@
-'''
+"""
 MIT License
 
 Copyright (c) 2023 Fast Data Science Ltd (https://fastdatascience.com)
@@ -25,7 +25,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-'''
+"""
 
 import operator
 import re
@@ -56,7 +56,9 @@ extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U.S", r"U.S."}, "
                   "CN": {"Macau"},
                   "LC": {"St Lucia", "St. Lucia"},
                   "KN": {"St Kitts and Nevis", "St. Kitts and Nevis"},
-                  "VC": {"St Vincent and the Grenadines", "St. Vincent and the Grenadines"}
+                  "VC": {"St Vincent and the Grenadines", "St. Vincent and the Grenadines"},
+                  # For compatibility with various versions of pycountry
+                  "TR": {"Turkey", "Turkiye", "Türkiye"},
                   }
 countries_maps = {}
 

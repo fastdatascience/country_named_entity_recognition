@@ -1,4 +1,4 @@
-'''
+"""
 MIT License
 
 Copyright (c) 2023 Fast Data Science Ltd (https://fastdatascience.com)
@@ -25,11 +25,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-'''
+"""
 
 import unittest
 
-from country_finder import find_countries
+from country_named_entity_recognition.country_finder import find_countries
 
 asian_alpha_2_codes = {'AE',
                        'AF',
@@ -99,7 +99,7 @@ Search:
 6	Japan	126,476,461	Eastern Asia
 7	Philippines	109,581,078	South-Eastern Asia
 8	Vietnam	97,338,579	South-Eastern Asia
-9	Turkey	84,339,067	Western Asia
+9	Turkiye	84,339,067	Western Asia
 10	Iran	83,992,949	Southern Asia
 11	Thailand	69,799,978	South-Eastern Asia
 12	Myanmar	54,409,800	South-Eastern Asia
@@ -152,3 +152,11 @@ Dependencies or other territories
             countries_found.add(country.alpha_2)
 
         self.assertEqual(asian_alpha_2_codes, countries_found)
+
+
+class TestSynonymsForTurkiye(unittest.TestCase):
+    def test_synonyms_for_turkiye(self):
+        countries = find_countries("I want to go to Turkey. I also want to go to Turkiye. I might even go to the Republic of Türkiye..")
+        self.assertEqual(len(countries), 3)
+        for country, match in countries:
+            self.assertEqual("TR", country.alpha_2)

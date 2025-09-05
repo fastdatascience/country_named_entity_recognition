@@ -1,0 +1,36 @@
+[project]
+name = "country-named-entity-recognition"
+version = "0.4"
+description = "Finds countries in a string"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Thomas Wood" }]
+maintainers = [{ name = "Thomas Wood" }]
+keywords = ["country", "ner", "nlp", "named entity recognition", "natural language processing"]
+urls = { Homepage = "https://fastdatascience.com/country-named-entity-recognition/"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.13",
+]
+requires-python = ">=3.9,<4.0"
+dependencies = [
+    "pycountry>=22.1.0"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.3.5",
+]
+
+[build-system]
+requires = ["setuptools>=61.2.0", "wheel"]
+build-backend = "setuptools.build_meta"
