@@ -126,21 +126,51 @@ Thomas Wood at https://fastdatascience.com
 
 We would be grateful for your taking the consideration to cite us. We would suggest something like the following (depending on your style):
 
-Wood, T.A., Country Named Entity Recognition [Computer software], Version 0.4, accessed at https://fastdatascience.com/country-named-entity-recognition/, Fast Data Science Ltd (2022)
+Wood, T.A., Country Named Entity Recognition [Computer software], Version 1.0.0, accessed at https://fastdatascience.com/natural-language-processing/country-named-entity-recognition/, Fast Data Science Ltd (2022)
 
 A BibTeX entry for LaTeX users is
 
 ```
 @unpublished{countrynamedentityrecognition,
     AUTHOR = {Wood, T.A.},
-    TITLE  = {Country Named Entity Recognition (Computer software), Version 0.4},
+    TITLE  = {Country Named Entity Recognition (Computer software), Version 1.0.0},
     YEAR   = {2023},
     Note   = {To appear},
-    url = {https://fastdatascience.com/country-named-entity-recognition/}
+    url = {https://fastdatascience.com/natural-language-processing/country-named-entity-recognition/}
 }
 
 ```
 
 ## Case studies of the Country Named Entity Recognition Library
 
-Alisa Redding at the University of Helsinki used the tool for her Masters thesis on mass species extinction and biodiversity. Redding, Alisa, [Animals of the Digital Age : Assessing digital media for public interest and engagement in species threatened by wildlife trade.](https://helda.helsinki.fi/items/77960829-145a-4efb-b364-3dbe6ac6bfb4/full), University of Helsinki, Faculty of Science, 2023.
+People and organisations around the world have been using the library and have cited us.
+
+### The sixth wave of mass species extinction...
+
+Alisa Redding at the University of Helsinki used the tool for her Masters thesis on mass species extinction and biodiversity.
+
+* Redding, Alisa. [Animals of the Digital Age: Assessing digital media for public interest and engagement in species threatened by wildlife trade.](https://helda.helsinki.fi/items/77960829-145a-4efb-b364-3dbe6ac6bfb4/full) University of Helsinki, Faculty of Science, 2023.
+
+### The UN's Sustainable Development Goals (SDGs)
+
+Christoph Funk and his colleagues at Justus-Liebig-Universität Gießen (Justus Liebig University Giessen) in Germany used country-named-entity-recognition for their meta-analysis of articles related to Sustainable Development Goals in 2023:
+
+* Funk, Christoph and Tönjes, Elena and Teuber, Ramona and Breuer, Lutz, Reading Between the Lines: The Intersection of Research Attention and Sustainable Development Goals (May 31, 2023). Available at SSRN: [https://ssrn.com/abstract=4465055](https://ssrn.com/abstract=4465055) or [http://dx.doi.org/10.2139/ssrn.4465055](http://dx.doi.org/10.2139/ssrn.4465055)
+
+### The European Commission: detecting terrorism and extremism
+
+Francesco Bosso and his team at the European Commission wrote a report investigating NLP for location detection with a focus on the JRC Terrorism and Extremism Database.
+
+* Bosso, Francesco, et al. [Use of Large Language Models for location detection on the example of the terrorism and extremism event database.](https://publications.jrc.ec.europa.eu/repository/bitstream/JRC134961/JRC134961_01.pdf), JRC Technical Report, European Commission (2023).
+
+
+### Labelling radical content online
+
+Ugochukwu Etudo and Victoria Y. Yoon at Virginia Commonwealth University used the tool in their analysis of radical content online:
+
+* Ugochukwu Etudo, Victoria Y. Yoon (2023) [Ontology-Based Information Extraction for Labeling Radical Online Content Using Distant Supervision](https://pubsonline.informs.org/doi/abs/10.1287/isre.2023.1223). Information Systems Research 0(0). [https://doi.org/10.1287/isre.2023.1223](https://doi.org/10.1287/isre.2023.1223)
+
+
+## Other named entity recognition tools
+
+* [Medical and clinical named entity recognition Python library](https://fastdatascience.com/ai-in-pharma/medical-named-entity-recognition-python-library/)

@@ -1,0 +1,29 @@
+name: Release Pypi package
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: "Build Distribution"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Install pypa/build
+        run: >-
+          python3 -m
+          pip install
+          build twine
+      - name: Build and publish
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+        run: |
+          python3 -m build
+          twine upload --repository pypi dist/*
