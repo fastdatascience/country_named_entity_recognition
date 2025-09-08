@@ -179,6 +179,12 @@ Ugochukwu Etudo and Victoria Y. Yoon at Virginia Commonwealth University used th
 
 * Ugochukwu Etudo, Victoria Y. Yoon (2023) [Ontology-Based Information Extraction for Labeling Radical Online Content Using Distant Supervision](https://pubsonline.informs.org/doi/abs/10.1287/isre.2023.1223). Information Systems Research 0(0). [https://doi.org/10.1287/isre.2023.1223](https://doi.org/10.1287/isre.2023.1223)
 
+### Analysing text to assess indicators in Sustainable Development Goals
+
+Elena Tönjes used the library to assess sustainability indicators in her PhD thesis:
+
+* Tönjes, Elena. [A Text-based Approach to Sustainability Indicators](https://jlupub.ub.uni-giessen.de/server/api/core/bitstreams/7fd77fae-28df-4769-ae94-905977892f00/content). Diss. Justus-Liebig-University Giessen, 2024.
+
 
 ## Other named entity recognition tools
 
