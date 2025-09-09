@@ -124,6 +124,17 @@ add_custom_variants(["Neverneverland"], "AE")
 find_countries("I want to visit Neverneverland")
 ```
 
+## Using the library with spaCy
+
+```
+import spacy
+from country_named_entity_recognition.country_finder_spacy import find_countries_in_spacy_doc
+nlp = spacy.blank("en")
+doc = nlp("I went to the USA")
+country_matches = find_countries_in_spacy_doc(nlp, doc)
+print (country_matches)
+```
+
 # Raising issues
 
 If you find a problem, you are welcome either to raise an issue at https://github.com/fastdatascience/country_named_entity_recognition/issues or to make a pull request and I will merge it into the project.
