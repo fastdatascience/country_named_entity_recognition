@@ -1,9 +1,13 @@
 import pycountry
 import re
-from country_finder import extra_synonyms
 import spacy
 from spacy.matcher import PhraseMatcher
-
+import sys
+import pathlib
+this_folder = pathlib.Path(__file__).parent.resolve()
+sys.path.append(f"{this_folder}")
+sys.path.append(f"{this_folder}/..")
+from common import extra_synonyms
 
 # A set of key words which indicate Georgia the country if they occur within 3 tokens of a mention of Georgia
 georgia_country_terms = {"country", "caucasus", "sakartvelo", "kartvelian", "ossetia", "black sea", "caspian", "idze",
