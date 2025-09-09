@@ -124,7 +124,7 @@ add_custom_variants(["Neverneverland"], "AE")
 find_countries("I want to visit Neverneverland")
 ```
 
-## Using the library with spaCy
+# Using the library with spaCy
 
 ```
 import spacy
