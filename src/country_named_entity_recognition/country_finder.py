@@ -32,17 +32,30 @@ import re
 
 import pycountry
 
-extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U.S", r"U.S."}, "CZ": {"Czech Rep", "Czech Republic"},
+extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U.S", r"U.S.", "U.S.A."}, "CZ": {"Czech Rep", "Czech Republic"},
                   "AE": {"UAE", r"U.A.E."},
-                  "KR": {"Korea", "Republic of Korea"}, "KP": {"North Korea", "Democratic People's Republic of Korea"},
-                  "CI": {"Ivory Coast"}, "CD": {"Congo, The Democratic Republic", "Congo, Democratic Republic",
+                  "KR": {"Korea", "Republic of Korea"}, "KP": {"North Korea", "Democratic People's Republic of Korea", "Democratic Peoples Republic of Korea", "DPRK", r"D.P.R.K."},
+                  "CI":  {"Ivory Coast", "Cote d'Ivoire", "Cote dIvoire", "Cote Divoire"}, "CD": {"Congo, The Democratic Republic", "Congo, Democratic Republic",
                                                 "Democratic Republic of the Congo",
                                                 "Democratic Republic of Congo", "DR Congo", "DRC"},
                   "CV": {"Cape Verde"}, "SH": {"St. Helena", "St Helena"},
                   "GB": {"Britain", "United Kingdom", "UK", r"U.K", r"U.K."},
-                  "RU": {"Russia"}, "VA": {"Holy See"}, "BN": {"Brunei"}, "LA": {"Laos"},
-                  "VG": {"British Virgin Islands", "Virgin Islands (British)", "Virgin Islands, British"},
-                  "VI": {"Virgin Islands (US)", "Virgin Islands (U.S.)", "Virgin Islands, US", "Virgin Islands, U.S."},
+                  "RU": {"Russia"}, "VA": {"Holy See"}, "BN": {"Brunei"}, "LA": {"Laos", "LPDR"},
+                  "VG": {"British Virgin Islands", "Virgin Islands (British)", "Virgin Islands, British",
+                         'Virgin Islands (Great Britain)',
+                         'Virgin Islands (GB)',
+                         'Virgin Islands (Britain)',
+                         'Virgin Islands (UK)'
+                         },
+                  "VI": {"Virgin Islands (US)", "Virgin Islands (U.S.)", "Virgin Islands, US", "Virgin Islands, U.S.",
+                         'Virgin Islands (USA)',
+                         'Virgin Islands (U.S.A.)',
+                         'USA Virgin Islands',
+                         'U.S. Virgin Islands',
+                         'US Virgin Islands',
+                         'American Virgin Islands',
+                         'U.S.A. Virgin Islands',
+                         },
                   "SY": {"Syria"}, "GE": {"Republic of Georgia"},
                   'GM': {'gambia, republic of', 'gambia republic', 'republic of gambia', 'republic of the gambia'},
                   "NL": {"Nerlands"}, "IR": {"Iran"}, "AE": {"UAE", "U.A.E."},
@@ -59,6 +72,8 @@ extra_synonyms = {"VN": {"Vietnam"}, "US": {"USA", "the US", r"U.S", r"U.S."}, "
                   "VC": {"St Vincent and the Grenadines", "St. Vincent and the Grenadines"},
                   # For compatibility with various versions of pycountry
                   "TR": {"Turkey", "Turkiye", "Türkiye"},
+                    "GQ": {"equatorial Guinea", "ecuatorial Guinea", "Equatorial Guinea", "Ecuatorial Guinea",
+                         "Guinea equatorial", "Guinea ecuatorial", "Guinea Equatorial", "Guinea Ecuatorial"}
                   }
 countries_maps = {}
 

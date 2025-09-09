@@ -28,6 +28,10 @@ SOFTWARE.
 """
 
 import unittest
+import sys
+
+sys.path.append("../src")
+sys.path.append("../src/country_named_entity_recognition")
 
 from country_named_entity_recognition.country_finder import find_countries
 
@@ -57,3 +61,8 @@ class TestSynonymsForUSA(unittest.TestCase):
         countries = find_countries("TALKING ABOUT US AND")
         self.assertEqual(0, len(countries))
 
+
+
+
+if __name__ == '__main__':
+    unittest.main()

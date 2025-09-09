@@ -33,63 +33,65 @@ import sys
 sys.path.append("../src")
 sys.path.append("../src/country_named_entity_recognition")
 
-from country_named_entity_recognition.country_finder import find_countries
+from country_named_entity_recognition.country_finder_spacy import find_countries_in_spacy_doc
+import spacy
 
+nlp = spacy.blank("en")
 
-class TestFindCountries(unittest.TestCase):
+class TestFindCountriesSpacy(unittest.TestCase):
 
     def test_empty_string(self):
-        self.assertEqual([], find_countries(""))
+        self.assertEqual([], find_countries_in_spacy_doc(nlp, nlp("")))
 
     def test_no_matches(self):
-        self.assertEqual([], find_countries("the"))
+        self.assertEqual([], find_countries_in_spacy_doc(nlp, nlp("the")))
 
     def test_one_country(self):
-        countries = find_countries("I went to Kenya.")
+        countries = find_countries_in_spacy_doc(nlp, nlp("I went to Kenya."))
         self.assertEqual(1, len(countries))
         self.assertEqual("KE", countries[0][0].alpha_2)
 
     def test_ambiguity(self):
-        countries = find_countries("I went to Korea.")
+        countries = find_countries_in_spacy_doc(nlp, nlp("I went to Korea."))
         self.assertEqual(1, len(countries))
         self.assertEqual("KR", countries[0][0].alpha_2)
 
     def test_ambiguity_2(self):
-        countries = find_countries("I went to South Korea.")
+        countries = find_countries_in_spacy_doc(nlp, nlp("I went to South Korea."))
         self.assertEqual(1, len(countries))
         self.assertEqual("KR", countries[0][0].alpha_2)
 
     def test_ambiguity_3(self):
-        countries = find_countries("I went to North Korea.")
+        countries = find_countries_in_spacy_doc(nlp, nlp("I went to North Korea."))
         self.assertEqual(1, len(countries))
         self.assertEqual("KP", countries[0][0].alpha_2)
 
     def test_ambiguity_4(self):
-        countries = find_countries("I went to The Democratic People's Republic of Korea.")
+        countries = find_countries_in_spacy_doc(nlp, nlp("I went to The Democratic People's Republic of Korea."))
         self.assertEqual(1, len(countries))
         self.assertEqual("KP", countries[0][0].alpha_2)
 
     def test_ambiguity_5(self):
-        countries = find_countries("I went to Guinea.")
+        countries = find_countries_in_spacy_doc(nlp, nlp("I went to Guinea."))
         self.assertEqual(1, len(countries))
         self.assertEqual("GN", countries[0][0].alpha_2)
 
     def test_ambiguity_6(self):
-        countries = find_countries("I went to equatorial Guinea.")
+        countries = find_countries_in_spacy_doc(nlp, nlp("I went to equatorial Guinea."))
         self.assertEqual(1, len(countries))
         self.assertEqual("GQ", countries[0][0].alpha_2)
 
     def test_ambiguity_7(self):
-        countries = find_countries("I have a Guinea pig.")
+        countries = find_countries_in_spacy_doc(nlp, nlp("I have a Guinea pig."))
         self.assertEqual(0, len(countries))
 
     def test_english_name(self):
-        countries = find_countries("I went to the ivory coast")
+        countries = find_countries_in_spacy_doc(nlp, nlp("I went to the ivory coast"), is_ignore_case=True)
         self.assertEqual(1, len(countries))
         self.assertEqual("CI", countries[0][0].alpha_2)
 
     def test_name_no_accents(self):
-        countries = find_countries("I went to cote divoire")
+        countries = find_countries_in_spacy_doc(nlp, nlp("I went to cote divoire"), is_ignore_case=True)
         self.assertEqual(1, len(countries))
         self.assertEqual("CI", countries[0][0].alpha_2)
 

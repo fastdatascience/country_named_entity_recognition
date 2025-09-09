@@ -34,7 +34,8 @@ sys.path.append("../src")
 sys.path.append("../src/country_named_entity_recognition")
 
 
-from country_named_entity_recognition.country_finder import find_countries
+from country_named_entity_recognition.country_finder_spacy import find_countries_in_spacy_doc
+import spacy
 
 african_alpha_2_codes = {'AO',
                          'BF',
@@ -92,10 +93,11 @@ african_alpha_2_codes = {'AO',
                          'ZW'}
 
 
-class TestManyAfricanCountriesAtOnce(unittest.TestCase):
+class TestManyAfricanCountriesAtOnceSpacy(unittest.TestCase):
 
     def test_all_countries_in_africa(self):
-        countries = find_countries("""The always up-to-date list of countries of Africa in alphabetical order
+        nlp = spacy.blank("en")
+        doc = nlp("""The always up-to-date list of countries of Africa in alphabetical order
         A
         Algeria
         Angola
@@ -165,13 +167,13 @@ class TestManyAfricanCountriesAtOnce(unittest.TestCase):
         Z
         Zambia
         Zimbabwe and that's all""")
+        countries = find_countries_in_spacy_doc(nlp, doc)
 
         countries_found = set()
         for country, match in countries:
             countries_found.add(country.alpha_2)
 
         self.assertEqual(african_alpha_2_codes, countries_found)
-
 
 
 

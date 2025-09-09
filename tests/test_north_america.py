@@ -28,6 +28,10 @@ SOFTWARE.
 """
 
 import unittest
+import sys
+
+sys.path.append("../src")
+sys.path.append("../src/country_named_entity_recognition")
 
 from country_named_entity_recognition.country_finder import find_countries
 
@@ -161,3 +165,8 @@ US Virgin Islands
             countries_found.add(country.alpha_2)
 
         self.assertEqual(north_american_alpha_2_codes, countries_found)
+
+
+
+if __name__ == '__main__':
+    unittest.main()

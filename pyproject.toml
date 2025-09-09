@@ -1,6 +1,6 @@
 [project]
 name = "country-named-entity-recognition"
-version = "1.0.0"
+version = "1.0.1"
 description = "Finds countries in a string"
 readme = "README.md"
 license = "MIT"
@@ -23,12 +23,13 @@ classifiers = [
 ]
 requires-python = ">=3.9,<4.0"
 dependencies = [
-    "pycountry>=22.1.0"
+    "pycountry>=24.6.1"
 ]
 
 [project.optional-dependencies]
 test = [
     "pytest>=8.3.5",
+    "spacy>=3.8.7"
 ]
 
 [build-system]

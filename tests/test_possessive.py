@@ -28,6 +28,10 @@ SOFTWARE.
 """
 
 import unittest
+import sys
+
+sys.path.append("../src")
+sys.path.append("../src/country_named_entity_recognition")
 
 from country_named_entity_recognition.country_finder import find_countries
 
@@ -43,3 +47,8 @@ class TestPossessive(unittest.TestCase):
         countries = find_countries("Britain's economy")
         self.assertEqual(1, len(countries))
         self.assertEqual("GB", countries[0][0].alpha_2)
+
+
+
+if __name__ == '__main__':
+    unittest.main()

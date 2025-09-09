@@ -33,7 +33,11 @@ import sys
 sys.path.append("../src")
 sys.path.append("../src/country_named_entity_recognition")
 
-from country_named_entity_recognition.country_finder import find_countries
+
+from country_named_entity_recognition.country_finder_spacy import find_countries_in_spacy_doc
+import spacy
+
+nlp = spacy.blank("en")
 
 asian_alpha_2_codes = {'AE',
                        'AF',
@@ -88,10 +92,10 @@ asian_alpha_2_codes = {'AE',
                        'YE'}
 
 
-class TestManyAsianCountriesAtOnce(unittest.TestCase):
+class TestManyAsianCountriesAtOnceSpacy(unittest.TestCase):
 
     def test_all_countries_in_asia(self):
-        countries = find_countries("""omous territories)
+        doc = nlp("""omous territories)
 Search:
 #	Country	Population
 (2020)	Subregion
@@ -150,6 +154,7 @@ Dependencies or other territories
 2	Hong Kong	7,496,981	China
 3	Macao	649,335	China
 """)
+        countries = find_countries_in_spacy_doc(nlp, doc, is_georgia_probably_the_country=True)
 
         countries_found = set()
         for country, match in countries:
@@ -160,7 +165,8 @@ Dependencies or other territories
 
 class TestSynonymsForTurkiye(unittest.TestCase):
     def test_synonyms_for_turkiye(self):
-        countries = find_countries("I want to go to Turkey. I also want to go to Turkiye. I might even go to the Republic of Türkiye..")
+
+        countries = find_countries_in_spacy_doc(nlp, nlp("I want to go to Turkey. I also want to go to Turkiye. I might even go to the Republic of Türkiye.."))
         self.assertEqual(len(countries), 3)
         for country, match in countries:
             self.assertEqual("TR", country.alpha_2)

@@ -28,6 +28,10 @@ SOFTWARE.
 """
 
 import unittest
+import sys
+
+sys.path.append("../src")
+sys.path.append("../src/country_named_entity_recognition")
 
 from country_named_entity_recognition.country_finder import add_custom_variants, find_countries
 
@@ -42,3 +46,9 @@ class TestCustomCountry(unittest.TestCase):
             countries_found.add(country.alpha_2)
 
         self.assertEqual({"AE"}, countries_found)
+
+
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -143,7 +143,7 @@ A BibTeX entry for LaTeX users is
 ```
 @unpublished{countrynamedentityrecognition,
     AUTHOR = {Wood, T.A.},
-    TITLE  = {Country Named Entity Recognition (Computer software), Version 1.0.0},
+    TITLE  = {Country Named Entity Recognition (Computer software), Version 1.0.1},
     YEAR   = {2025},
     doi    = {10.5281/zenodo.17062716},
     url = {https://fastdatascience.com/natural-language-processing/country-named-entity-recognition/}
