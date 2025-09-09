@@ -34,6 +34,8 @@ Please note this library finds only high confidence countries. A text such as "A
 
 It also only finds the English names of these countries. Names in the local language are not supported.
 
+**New! In 2025 we have added support for [spaCy](#using-the-library-with-spacy)**
+
 # Requirements
 
 Python 3.9 and above
@@ -125,6 +127,8 @@ find_countries("I want to visit Neverneverland")
 ```
 
 # Using the library with spaCy
+
+If you are already using [spaCy](https://spacy.io) in your project, you'll be pleased to see that you can pass a spaCy Doc object into the tool:
 
 ```
 import spacy
