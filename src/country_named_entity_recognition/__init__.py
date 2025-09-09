@@ -27,6 +27,6 @@ SOFTWARE.
 
 """
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 from country_named_entity_recognition.country_finder import find_countries

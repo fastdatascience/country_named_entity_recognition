@@ -12,7 +12,7 @@ authors:
 repository-code: 'https://github.com/fastdatascience/country_named_entity_recognition/'
 url: 'https://fastdatascience.com/natural-language-processing/country-named-entity-recognition/'
 license: MIT
-version: 1.0.1
+version: 1.0.2
 date-released: '2025-09-05'
 url: 'https://zenodo.org/doi/10.5281/zenodo.17062716'
 doi: 10.5281/zenodo.17062716

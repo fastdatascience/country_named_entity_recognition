@@ -1,6 +1,6 @@
 [project]
 name = "country-named-entity-recognition"
-version = "1.0.1"
+version = "1.0.2"
 description = "Finds countries in a string"
 readme = "README.md"
 license = "MIT"

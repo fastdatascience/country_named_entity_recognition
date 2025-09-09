@@ -30,11 +30,7 @@ SOFTWARE.
 import operator
 import re
 import sys
-import pathlib
-this_folder = pathlib.Path(__file__).parent.resolve()
-sys.path.append(f"{this_folder}")
-sys.path.append(f"{this_folder}/..")
-from common import extra_synonyms
+from country_named_entity_recognition.common import extra_synonyms
 import pycountry
 
 countries_maps = {}
