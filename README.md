@@ -200,6 +200,9 @@ Elena Tönjes used the library to assess sustainability indicators in her PhD th
 
 * Tönjes, Elena. [A Text-based Approach to Sustainability Indicators](https://jlupub.ub.uni-giessen.de/server/api/core/bitstreams/7fd77fae-28df-4769-ae94-905977892f00/content). Diss. Justus-Liebig-University Giessen, 2024.
 
+### De-risking clinical trials: the Clinical Trial Risk Tool
+
+Fast Data Science are using the Country Named Entity Recognition library in the Clinical Trial Risk Tool, where it's important to identify the countries where a trial takes place, avoiding false positives from spurious mentions. More information at: https://clinicaltrialrisk.org/
 
 ## Other named entity recognition tools
 
